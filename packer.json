@@ -1,0 +1,38 @@
+{
+ "variables" : {
+  "fqdn" : "www.demo.com",
+  "port" : "8080",
+  "DEBIAN_FRONTEND" : "noninteractive"
+ },
+  "builders": [
+    {
+      "type": "lxd",
+      "name": "lxd-ubuntu",
+      "image": "local/nginx:test",
+      "output_image": "helloworld:test",
+      "publish_properties": {
+        "description": "Trivial repackage with Packer"
+      }
+    }
+   ],
+ "provisioners": [
+    {
+    "type" : "file",
+    "source" : "injections/",
+    "destination" : "/tmp/"
+   },
+    {
+    "type" : "file",
+    "source" : "buildscripts/",
+    "destination" : "/"
+   },
+    {
+      "type": "shell",
+      "inline": ["apt-get -y install git",
+      "git clone https://github.com/jvodan/helloworldhtml /var/www/hello_world",
+      "cd /tmp/injections ; cp -rp . / ",
+      "/buildscripts/set_permissions.sh",
+      "rm -r /buildscripts"]
+    }
+  ]
+}
