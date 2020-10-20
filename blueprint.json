@@ -1,0 +1,36 @@
+{
+	"title": "helloworld",
+	"description": "Nginx web Server",
+	"configuration": {
+	  "DEBIAN_FRONTEND" : "noninteractive",
+		"port": "80",
+		"fqdn": "helloworld.^^domain_name^^"
+	}
+},
+"os_packages": [
+	{
+		"type": "debian",
+		"name": "git"
+	}
+],
+"packages": [
+  {
+    "descriptor": {
+      "repository": https://github.com/jvodan/helloworldhtml",
+      "extraction": "git",
+      "destination": "/var/www/helloworld"
+    }
+  }
+]
+"images": [
+	{
+		"type": "lxd",
+		"image": "nginx"
+	}
+],
+"containers": [
+	{
+		"type": "lxd"
+	}
+]
+}

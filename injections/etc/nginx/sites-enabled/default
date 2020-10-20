@@ -1,0 +1,7 @@
+server {
+    listen ^^port^^;
+ 
+location / {
+    root /var/www/helloworld;
+ }
+}
