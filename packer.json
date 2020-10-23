@@ -1,8 +1,7 @@
 {
  "variables" : {
   "fqdn" : "helloworld.demo.com",
-  "port" : "80",
-  "DEBIAN_FRONTEND" : "noninteractive"
+  "port" : "80"
  },
   "builders": [
     {

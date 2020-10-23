@@ -1,36 +1,41 @@
 {
 	"title": "helloworld",
-	"description": "Nginx web Server",
-	"configuration": {
-	  "DEBIAN_FRONTEND" : "noninteractive",
-		"port": "80",
-		"fqdn": "helloworld.^^domain_name^^"
-	}
-},
-"os_packages": [
-	{
-		"type": "debian",
-		"name": "git"
-	}
-],
-"packages": [
-  {
-    "descriptor": {
-      "repository": https://github.com/jvodan/helloworldhtml",
-      "extraction": "git",
-      "destination": "/var/www/helloworld"
-    }
-  }
-]
-"images": [
-	{
-		"type": "lxd",
-		"image": "nginx"
-	}
-],
-"containers": [
-	{
-		"type": "lxd"
-	}
-]
+	"description": "Nginx web Server Example",
+	"os_packages": [
+		{
+			"type": "debian",
+			"name": "git"
+		}
+	],
+	"bindings": [
+		{
+			"type": "embed",
+			"repository": "https://github.com/v2Blueprints/nginx",
+			"branch": "hashidocker",
+			"configuration": {
+				"port": "80",
+				"fqdn": "helloworld.^^domain_name^^"
+			}
+		}
+	],
+	"packages": [
+		{
+			"descriptor": {
+				"repository": "https://github.com/jvodan/helloworldhtml",
+				"extraction": "git",
+				"destination": "/var/www/helloworld"
+			}
+		}
+	],
+	"images": [
+		{
+			"type": "lxd",
+			"image": "enginesd_debian_base"
+		}
+	],
+	"containers": [
+		{
+			"type": "lxd"
+		}
+	]
 }
